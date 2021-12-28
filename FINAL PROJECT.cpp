@@ -19,15 +19,18 @@ void Menghapus();
 
 int main(){
 	int getInput;
-    do{
-        printf("1) Input Data Barang Baru\n");
-        printf("2) Menampilkan Data Barang\n");
-        printf("3) Menampilkan Data Berdasarkan Stock\n");
-        printf("4) Mencari Barang\n");
-        printf("5) Mengubah Data Barang\n");
-        printf("6) Menghapus Data Barang\n");
-        printf("0) Keluar\n");
-        printf("-------------------------\n");
+    do{ 
+    	printf("========================================\n");
+    	printf("              KALKULATOR\n");
+    	printf("========================================\n");
+        printf("1. Input Data Barang Baru\n");
+        printf("2. Menampilkan Data Barang\n");
+        printf("3. Menampilkan Data Berdasarkan Stock\n");
+        printf("4. Mencari Barang\n");
+        printf("5. Mengubah Data Barang\n");
+        printf("6. Menghapus Data Barang\n");
+        printf("0. Keluar\n");
+        printf("========================================\n");
         printf("Pilihan kamu -> ");
         scanf("%d", &getInput);
         switch(getInput)
@@ -55,7 +58,7 @@ int main(){
             default:
                 printf("Pilihan tidak tersedia, silahkan coba kembali!\n\n");
                 break;
-        }
+		}
     }while(getInput != 0);
 	
 	return 0;
@@ -73,8 +76,10 @@ void InputData(){
 	
 	if(fh!=NULL){
 		for(i=0;i<totalData;i++){
-		printf("\nBarang %d\n", i+1);
-		printf("Kode Barang :");
+		printf("========================================\n");
+		printf("              BARANG %d\n", i+1);
+		printf("========================================\n");
+		printf("Kode Barang  : ");
 		scanf("%d", &data[i]);
     	printf("Nama Barang  : "); fflush(stdin);
     	fgets(data[i].nama ,50, stdin);
@@ -83,9 +88,10 @@ void InputData(){
     	scanf("%d", &data[i].harga);
     	printf("Jumlah Barang: ");
     	scanf("%d", &data[i].stock);
-		printf("\n");
+		printf("========================================\n");
 		fwrite(&data[i], sizeof(struct Barang),1, fh);
 	}
+	printf("\n\n\n\n");
 	}
 	fclose(fh);
 }
@@ -105,13 +111,14 @@ void MenampilkanData(){
     	printf("Harga Barang : %d\n",data1.harga);
     	printf("Jumlah Barang: %d\n",data1.stock);
 		printf ("\n");
-		i++;
 	}
-	printf("==============================\n");	
+		printf("==============================\n\n\n\n");	
 	}
 	
 	else if(fh==NULL){
-		printf("Data Masih Kosong!\n\n");
+		printf("==============================\n");
+		printf("     DATA MASIH KOSONG \n");
+		printf("==============================\n\n\n\n");
 	}
 	fclose(fh);
 }
@@ -136,21 +143,22 @@ void CariBarang(){
     			printf("Nama Barang  : %s\n",data1.nama);
     			printf("Harga Barang : %d\n",data1.harga);
     			printf("Jumlah Barang: %d\n",data1.stock);
-    			printf("==============================\n");	
-				printf ("\n");
+    			printf("==============================\n\n\n\n");	
 		}
 	}
 		
 		if(!found){
 			printf("==============================\n");
 			printf("     DATA TIDAK DITEMUKAN \n");
-			printf("==============================\n");	
+			printf("==============================\n\n\n\n");	
 		}
 		
 	}
 	
 	else if(fh==NULL){
-		printf("Data Masih Kosong!\n\n");
+		printf("==============================\n");
+		printf("     DATA MASIH KOSONG \n");
+		printf("==============================\n\n\n\n");
 	}
 	fclose(fh);
 }
@@ -182,7 +190,7 @@ void SortingBarang(){
 	
 	fh = fopen("Data_Barang.txt", "w");
 		printf("==============================\n");
-		printf("        DATA BARANG \n");
+		printf(" DATA BARANG BERDASARKAN STOCK \n");
 		printf("==============================\n");
 	for(i=0;i<jumlah;i++){
 		printf("Kode Barang  : %d\n",data[i].kode);
@@ -192,7 +200,7 @@ void SortingBarang(){
 		printf ("\n");
 		fwrite(&data[i], sizeof(struct Barang),1, fh);
 	}
-	
+	    printf("==============================\n\n\n\n");
 	fclose(fh);
 }
 
@@ -209,7 +217,10 @@ void MengubahData(){
 		while(fread(&data1, sizeof(Barang),1, fh)){
 			if(data1.kode == cari){
 				found= 1;
-				printf("Kode Barang :");
+				printf("========================================\n");
+    			printf("           UBAH DATA BARANG\n");
+    			printf("========================================\n");
+				printf("Kode Barang  : ");
 				scanf("%d", &data1.kode);
     			printf("Nama Barang  : "); fflush(stdin);
     			fgets(data1.nama ,50, stdin);
@@ -218,7 +229,7 @@ void MengubahData(){
     			scanf("%d", &data1.harga);
     			printf("Jumlah Barang: ");
     			scanf("%d", &data1.stock);
-				printf("\n");
+				printf("========================================\n\n\n\n");
 		}
 		fwrite(&data1, sizeof(Barang),1, fp);
 	}
@@ -228,7 +239,7 @@ void MengubahData(){
 		if(!found){
 			printf("==============================\n");
 			printf("     DATA TIDAK DITEMUKAN \n");
-			printf("==============================\n");	
+			printf("==============================\n\n\n\n");	
 		}
 		else if (found){
 			fp = fopen("temp.txt", "r");
@@ -245,7 +256,9 @@ void MengubahData(){
 	}
 	
 	else if(fh==NULL){
-		printf("Data Masih Kosong!\n\n");
+		printf("==============================\n");
+		printf("     DATA MASIH KOSONG \n");
+		printf("==============================\n\n\n\n");
 	}
 	
 
@@ -274,7 +287,7 @@ void Menghapus(){
 		if(!found){
 			printf("==============================\n");
 			printf("     DATA TIDAK DITEMUKAN \n");
-			printf("==============================\n");	
+			printf("==============================\n\n\n\n");	
 		}
 		else if (found){
 			fp = fopen("temp.txt", "r");
@@ -285,7 +298,7 @@ void Menghapus(){
 			}
 			printf("==============================\n");
 			printf("     DATA TELAH DIHAPUS \n");
-			printf("==============================\n");	
+			printf("==============================\n\n\n\n");	
 			fclose(fh);
 			fclose(fp);
 		}
@@ -293,6 +306,8 @@ void Menghapus(){
 	}
 	
 	else if(fh==NULL){
-		printf("Data Masih Kosong!\n\n");
+		printf("==============================\n");
+		printf("     DATA MASIH KOSONG \n");
+		printf("==============================\n\n\n\n");
 	}	
 }
