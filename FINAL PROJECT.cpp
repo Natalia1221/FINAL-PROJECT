@@ -1,3 +1,128 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Barang{
+    int kode;
+	char nama[50];
+    int harga;
+    int stock;
+}Barang;
+
+int i, jumlah, cari, found;
+void InputData();
+void MenampilkanData();
+void CariBarang();
+void SortingBarang();
+void MengubahData();
+void Menghapus();
+
+int main(){
+	int getInput;
+    do{ 
+    	printf("========================================\n");
+    	printf("            STOCK SUPERMARKET\n");
+    	printf("========================================\n");
+        printf("1. Input Data Barang Baru\n");
+        printf("2. Menampilkan Data Barang\n");
+        printf("3. Menampilkan Data Berdasarkan Stock\n");
+        printf("4. Mencari Barang\n");
+        printf("5. Mengubah Data Barang\n");
+        printf("6. Menghapus Data Barang\n");
+        printf("0. Keluar\n");
+        printf("========================================\n");
+        printf("Pilihan kamu -> ");
+        scanf("%d", &getInput);
+        switch(getInput)
+        {
+            case 0:
+                break;
+            case 1:
+				InputData();
+                break;
+            case 2:
+                MenampilkanData();
+                break;
+            case 3:
+                SortingBarang();
+            	break;
+            case 4:
+            	CariBarang();
+                break;
+			case 5:
+                MengubahData();
+                break;
+            case 6:
+                Menghapus();
+                break;
+            default:
+                printf("Pilihan tidak tersedia, silahkan coba kembali!\n\n");
+                break;
+		}
+    }while(getInput != 0);
+	
+	return 0;
+}
+
+void InputData(){
+	Barang *data;
+	FILE *fh;
+	int totalData;
+    printf("Banyak Data : ");
+    scanf("%d", &totalData);
+    
+    data = (Barang*)calloc(totalData, sizeof(Barang));
+	fh = fopen("Data_Barang.txt", "a");
+	
+	if(fh!=NULL){
+		for(i=0;i<totalData;i++){
+		printf("========================================\n");
+		printf("              BARANG %d\n", i+1);
+		printf("========================================\n");
+		printf("Kode Barang  : ");
+		scanf("%d", &data[i]);
+    	printf("Nama Barang  : "); fflush(stdin);
+    	fgets(data[i].nama ,50, stdin);
+    	data[i].nama[strlen(data[i].nama)-1] = '\0';
+    	printf("Harga Barang : ");
+    	scanf("%d", &data[i].harga);
+    	printf("Jumlah Barang: ");
+    	scanf("%d", &data[i].stock);
+		printf("========================================\n");
+		fwrite(&data[i], sizeof(struct Barang),1, fh);
+	}
+	printf("\n\n\n\n");
+	}
+	fclose(fh);
+}
+
+void MenampilkanData(){
+	Barang data1;
+	i =0;
+	FILE *fh = fopen("Data_Barang.txt", "r");
+	
+	if(fh!=NULL){
+		printf("==============================\n");
+		printf("        DATA BARANG \n");
+		printf("==============================\n");
+		while(fread(&data1, sizeof(Barang),1, fh)){
+		printf("Kode Barang  : %d\n",data1.kode);
+    	printf("Nama Barang  : %s\n",data1.nama);
+    	printf("Harga Barang : %d\n",data1.harga);
+    	printf("Jumlah Barang: %d\n",data1.stock);
+		printf ("\n");
+	}
+		printf("==============================\n\n\n\n");	
+	}
+	
+	else if(fh==NULL){
+		printf("==============================\n");
+		printf("     DATA MASIH KOSONG \n");
+		printf("==============================\n\n\n\n");
+	}
+	fclose(fh);
+}
+
 void CariBarang(){
 	Barang data1;
 	found =0;
