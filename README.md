@@ -33,6 +33,14 @@
 <h3>Keluar Dari Aplikasi</h3>
 <img src="https://github.com/Natalia1221/wpu-git-test-2/blob/main/EXIT.png" width="300px"</img> 
 
+<h3>Anggota kelompok :</h3>
+<ul>
+  <li>Rafi Anggara Nindiaputra    20081010005</li>
+  <li>Natalia Matondang           20081010010</li>
+  <li>Alfin Tri Mulyani	          20081010179</li>
+
+</ul>
+
 <!-- Awal Deskripsi -->
 
 <h3>Deskripsi</h3>
@@ -91,10 +99,3 @@ dapat dimudahkan dalam memutuskan barang apa saja yang perlu ditambah lagi.</p>
   <li>Apabila sudah tidak ada lagi yang ingin dilakukan, pilih fitur Keluar</li>
 </ol>
 
-<h3>Anggota kelompok :</h3>
-<ul>
-  <li>Rafi Anggara Nindiaputra    20081010005</li>
-  <li>Natalia Matondang           20081010010</li>
-  <li>Alfin Tri Mulyani	          20081010179</li>
-
-</ul>
