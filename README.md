@@ -142,5 +142,6 @@ dapat dimudahkan dalam memutuskan barang apa saja yang perlu ditambah lagi.</p>
   <li> Masukkan pilihan 0 pada menu utama</li>
   <li>Selesai</li>
    </o1>
+   
 
 
